@@ -1,7 +1,7 @@
 import unittest
 
-from src.song import song
+from src.song import Song
 
 class TestSong(unittest.TestCase):
 
-    
+    pass
