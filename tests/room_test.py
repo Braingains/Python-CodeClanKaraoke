@@ -18,6 +18,9 @@ class TestRoom(unittest.TestCase):
         self.Floyd = Guest("Floyd", 150)
         self.Ross = Guest("Ross", 5)
 
+        self.guests = []
+        self.songs = []
+
 
 
     def test_room_has_name(self):
@@ -32,8 +35,12 @@ class TestRoom(unittest.TestCase):
     def test_can_guest_afford_room__true_if_can(self):
         self.assertEqual(True, self.Small_Room.can_guest_afford_room(self.Ewan, self.Small_Room))
 
-    # def test_check_in_guest(self):
-    #     self.assertEqual(self.guest[Mariah], self.Small_Room.check_in_guest(self.Mariah))
+    def test_can_guest_afford_room__false_if_cannot(self):
+        self.assertEqual(False, self.Small_Room.can_guest_afford_room(self.Ross, self.Small_Room))
+
+    def test_check_in_guest(self):
+        self.Small_Room.check_in_guest(self.Mariah, self.Small_Room)
+        self.assertEqual(1, self.Small_Room.count_guests_in_room())
 
     #check out guests
 
