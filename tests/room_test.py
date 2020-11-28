@@ -47,6 +47,23 @@ class TestRoom(unittest.TestCase):
         self.Small_Room.check_in_guest(self.Mariah, self.Small_Room)
         self.assertEqual(1, self.Small_Room.count_guests_in_room())
 
+    def test_cannot_check_in_guest_with_insufficient_funds(self):
+        self.Small_Room.check_in_guest(self.Ross, self.Small_Room)
+        self.assertEqual(0, self.Small_Room.count_guests_in_room())
+
+    def test_cannot_check_in_more_guests_than_room_capacity1(self):
+        self.Small_Room.check_in_guest(self.Mariah, self.Small_Room)
+        self.Small_Room.check_in_guest(self.Freddie, self.Small_Room)
+        self.Small_Room.check_in_guest(self.Shufan, self.Small_Room)
+        self.Small_Room.check_in_guest(self.Floyd, self.Small_Room)
+        self.Small_Room.check_in_guest(self.Ewan, self.Small_Room)
+        self.assertEqual(4, self.Small_Room.count_guests_in_room())
+
+
+    def test_funds_added_to_till_at_check_in(self):
+        self.Small_Room.check_in_guest(self.Mariah, self.Small_Room)
+        self.assertEqual(15, self.Small_Room.till)
+
     def test_check_in_multiple_guests(self):
         self.Small_Room.check_in_guest(self.Mariah, self.Small_Room)
         self.Small_Room.check_in_guest(self.Freddie, self.Small_Room)
@@ -79,3 +96,5 @@ class TestRoom(unittest.TestCase):
         self.Small_Room.add_song_to_playlist(self.Wannabe)
         self.Small_Room.remove_song_from_playlist(self.Wannabe)
         self.assertEqual(1, self.Small_Room.count_songs_in_playlist())
+
+    

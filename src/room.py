@@ -12,7 +12,8 @@ class Room:
         return guest.sufficient_funds(name)
 
     def check_in_guest(self, guest, name):
-        if self.can_guest_afford_room (guest, name):
+        if self.can_guest_afford_room (guest, name) and self.count_guests_in_room() < self.capacity:
+            self.till += self.fee
             self.guests.append(guest)
 
     def count_guests_in_room(self):
