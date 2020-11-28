@@ -6,4 +6,9 @@ from src.song import Song
 
 class TestRoom(unittest.TestCase):
 
-    pass
+    def setUp(self):
+        self.Large_Room = Room("Large Room", 12, 50, 0)
+        self.Medium_Room = Room("Medium Room", 8, 40, 0)
+        self.Small_Room = Room("Small Room", 4, 30, 0)
+
+    
