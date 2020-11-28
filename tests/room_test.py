@@ -11,4 +11,11 @@ class TestRoom(unittest.TestCase):
         self.Medium_Room = Room("Medium Room", 8, 40, 0)
         self.Small_Room = Room("Small Room", 4, 30, 0)
 
-    
+    def test_room_has_name(self):
+        self.assertEqual("Large Room", self.Large_Room.name)
+
+    def test_room_has_capacity(self):
+        self.assertEqual(8, self.Medium_Room.capacity)
+
+    def test_room_has_fee(self):
+        self.assertEqual(30, self.Small_Room.fee)
