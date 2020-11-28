@@ -19,3 +19,9 @@ class TestRoom(unittest.TestCase):
 
     def test_room_has_fee(self):
         self.assertEqual(30, self.Small_Room.fee)
+
+    #check in guests
+
+    #check out guests
+
+    #add songs
