@@ -18,8 +18,13 @@ class TestRoom(unittest.TestCase):
         self.Floyd = Guest("Floyd", 150)
         self.Ross = Guest("Ross", 5)
 
+        self.Bohemian_Rhapsody = Song("Bohemian Rhapsody", "Queen", "Classic Rock")
+        self.Africa = Song("Africa", "Toto", "Classic Rock")
+        self.Wannabe = Song("Wannabe", "Spice Girls", "90s Pop")
+        self.Never_Gonna_Give_You_Up = Song("Never Gonna Give You Up", "Rick Astley", "80s Pop")
+
         self.guests = []
-        self.songs = []
+        self.playlist = []
 
 
 
@@ -42,6 +47,35 @@ class TestRoom(unittest.TestCase):
         self.Small_Room.check_in_guest(self.Mariah, self.Small_Room)
         self.assertEqual(1, self.Small_Room.count_guests_in_room())
 
-    #check out guests
+    def test_check_in_multiple_guests(self):
+        self.Small_Room.check_in_guest(self.Mariah, self.Small_Room)
+        self.Small_Room.check_in_guest(self.Freddie, self.Small_Room)
+        self.Small_Room.check_in_guest(self.Shufan, self.Small_Room)
+        self.Small_Room.check_in_guest(self.Floyd, self.Small_Room)
+        self.assertEqual(4, self.Small_Room.count_guests_in_room())
 
-    #add songs
+    def test_check_out_guest1(self):
+        self.Small_Room.check_in_guest(self.Freddie, self.Small_Room)
+        self.Small_Room.check_out_guest(self.Freddie, self.Small_Room)
+        self.assertEqual(0, self.Small_Room.count_guests_in_room())
+
+    def test_check_out_guest2(self):
+        self.Small_Room.check_in_guest(self.Mariah, self.Small_Room)
+        self.Small_Room.check_in_guest(self.Freddie, self.Small_Room)
+        self.Small_Room.check_out_guest(self.Freddie, self.Small_Room)
+        self.assertEqual(1, self.Small_Room.count_guests_in_room())
+
+    def test_songs_can_be_added_to_playlist(self):
+        self.Small_Room.add_song_to_playlist(self.Africa)
+        self.assertEqual(1, self.Small_Room.count_songs_in_playlist())
+
+    def test_multiple_songs_can_be_added_to_playlist(self):
+        self.Small_Room.add_song_to_playlist(self.Africa)
+        self.Small_Room.add_song_to_playlist(self.Wannabe)
+        self.assertEqual(2, self.Small_Room.count_songs_in_playlist())
+
+    def test_songs_can_be_removed_from_playlist(self):
+        self.Small_Room.add_song_to_playlist(self.Africa)
+        self.Small_Room.add_song_to_playlist(self.Wannabe)
+        self.Small_Room.remove_song_from_playlist(self.Wannabe)
+        self.assertEqual(1, self.Small_Room.count_songs_in_playlist())
