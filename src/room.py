@@ -5,5 +5,9 @@ class Room:
         self.capacity = capacity
         self.fee = fee
         self.till = 0
-        self.guest = []
+        self.guests = []
         self.songs = []
+
+    def can_guest_afford_room (self, guest, name):
+        return guest.sufficient_funds(name)
+
