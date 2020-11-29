@@ -30,3 +30,12 @@ class Room:
 
     def remove_song_from_playlist(self, song):
         self.playlist.remove(song)
+
+    def thats_my_jam(self, guest):
+        for guest in self.guests:
+            for song in self.playlist:
+                if song == guest.favourite_song:
+                    return ("THAT'S MY JAM!")
+        return None
+
+

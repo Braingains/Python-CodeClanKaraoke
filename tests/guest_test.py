@@ -7,16 +7,23 @@ from src.room import Room
 class TestGuest(unittest.TestCase):
 
     def setUp(self):
-        self.Ewan = Guest("Ewan", 20)
-        self.Shufan = Guest("Shufan", 50)
-        self.Freddie = Guest("Freddie", 100)
-        self.Mariah = Guest("Mariah", 5000)
-        self.Floyd = Guest("Floyd", 150)
-        self.Ross = Guest("Ross", 5)
+        self.Ewan = Guest("Ewan", 20, "Africa")
+        self.Shufan = Guest("Shufan", 50, "Wannabe")
+        self.Freddie = Guest("Freddie", 100, "Bohemian Rhapsody")
+        self.Mariah = Guest("Mariah", 5000, "Never Gonna Give You Up")
+        self.Floyd = Guest("Floyd", 150, "We Like To Party")
+        self.Ross = Guest("Ross", 5, "Danger Zone")
 
         self.Large_Room = Room("Large Room", 12, 8, 0)
         self.Medium_Room = Room("Medium Room", 8, 10, 0)
         self.Small_Room = Room("Small Room", 4, 15, 0)
+
+        self.Bohemian_Rhapsody = Song("Bohemian Rhapsody", "Queen", "Classic Rock")
+        self.Africa = Song("Africa", "Toto", "Classic Rock")
+        self.Wannabe = Song("Wannabe", "Spice Girls", "90s Pop")
+        self.Never_Gonna_Give_You_Up = Song("Never Gonna Give You Up", "Rick Astley", "80s Pop")
+        self.We_Like_To_Party = Song("We Like To Party", "Vengaboys", "90s Pop")
+        self.Danger_Zone = Song("Danger Zone", "Kenny Loggins", "80s Pop")
 
 
     def test_guest_has_name(self):
@@ -24,6 +31,9 @@ class TestGuest(unittest.TestCase):
 
     def test_guest_has_cash(self):
         self.assertEqual(50, self.Shufan.wallet)
+
+    def test_guest_has_favourite_song(self):
+        self.assertEqual("Africa", self.Ewan.favourite_song)
 
     def test_guest_sufficient_funds__true_if_enough(self):
         self.assertEqual(True, self.Mariah.sufficient_funds(self.Large_Room))

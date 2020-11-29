@@ -11,21 +11,19 @@ class TestRoom(unittest.TestCase):
         self.Medium_Room = Room("Medium Room", 8, 10, 0)
         self.Small_Room = Room("Small Room", 4, 15, 0)
 
-        self.Ewan = Guest("Ewan", 20)
-        self.Shufan = Guest("Shufan", 50)
-        self.Freddie = Guest("Freddie", 100)
-        self.Mariah = Guest("Mariah", 5000)
-        self.Floyd = Guest("Floyd", 150)
-        self.Ross = Guest("Ross", 5)
+        self.Ewan = Guest("Ewan", 20, "Africa")
+        self.Shufan = Guest("Shufan", 50, "Wannabe")
+        self.Freddie = Guest("Freddie", 100, "Bohemian Rhapsody")
+        self.Mariah = Guest("Mariah", 5000, "Never Gonna Give You Up")
+        self.Floyd = Guest("Floyd", 150, "We Like To Party")
+        self.Ross = Guest("Ross", 5, "Danger Zone")
 
         self.Bohemian_Rhapsody = Song("Bohemian Rhapsody", "Queen", "Classic Rock")
         self.Africa = Song("Africa", "Toto", "Classic Rock")
         self.Wannabe = Song("Wannabe", "Spice Girls", "90s Pop")
         self.Never_Gonna_Give_You_Up = Song("Never Gonna Give You Up", "Rick Astley", "80s Pop")
-
-        self.guests = []
-        self.playlist = []
-
+        self.We_Like_To_Party = Song("We Like To Party", "Vengaboys", "90s Pop")
+        self.Danger_Zone = Song("Danger Zone", "Kenny Loggins", "80s Pop")
 
 
     def test_room_has_name(self):
@@ -97,4 +95,7 @@ class TestRoom(unittest.TestCase):
         self.Small_Room.remove_song_from_playlist(self.Wannabe)
         self.assertEqual(1, self.Small_Room.count_songs_in_playlist())
 
-    
+    def test_guest_recognises_favourite_song(self):
+        self.Small_Room.check_in_guest(self.Ewan, self.Small_Room)
+        self.Small_Room.add_song_to_playlist(self.Africa)
+        self.assertEqual("THAT'S MY JAM!", self.Small_Room.thats_my_jam(self.Ewan))
