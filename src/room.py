@@ -26,10 +26,10 @@ class Room:
         return len(self.playlist)
 
     def add_song_to_playlist(self, song):
-        self.playlist.append(song)
+        self.playlist.append(song.title)
 
     def remove_song_from_playlist(self, song):
-        self.playlist.remove(song)
+        self.playlist.remove(song.title)
 
     def thats_my_jam(self, guest):
         for guest in self.guests:

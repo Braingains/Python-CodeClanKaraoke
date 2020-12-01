@@ -81,21 +81,22 @@ class TestRoom(unittest.TestCase):
         self.assertEqual(1, self.Small_Room.count_guests_in_room())
 
     def test_songs_can_be_added_to_playlist(self):
-        self.Small_Room.add_song_to_playlist(self.Africa)
+        self.Small_Room.add_song_to_playlist(self.Africa.title)
         self.assertEqual(1, self.Small_Room.count_songs_in_playlist())
 
     def test_multiple_songs_can_be_added_to_playlist(self):
-        self.Small_Room.add_song_to_playlist(self.Africa)
-        self.Small_Room.add_song_to_playlist(self.Wannabe)
+        self.Small_Room.add_song_to_playlist(self.Africa.title)
+        self.Small_Room.add_song_to_playlist(self.Wannabe.title)
         self.assertEqual(2, self.Small_Room.count_songs_in_playlist())
 
     def test_songs_can_be_removed_from_playlist(self):
-        self.Small_Room.add_song_to_playlist(self.Africa)
-        self.Small_Room.add_song_to_playlist(self.Wannabe)
-        self.Small_Room.remove_song_from_playlist(self.Wannabe)
+        self.Small_Room.add_song_to_playlist(self.Africa.title)
+        self.Small_Room.add_song_to_playlist(self.Wannabe.title)
+        self.Small_Room.remove_song_from_playlist(self.Wannabe.title)
         self.assertEqual(1, self.Small_Room.count_songs_in_playlist())
 
     def test_guest_recognises_favourite_song(self):
         self.Small_Room.check_in_guest(self.Ewan, self.Small_Room)
         self.Small_Room.add_song_to_playlist(self.Africa)
+        print(self.Small_Room.playlist)
         self.assertEqual("THAT'S MY JAM!", self.Small_Room.thats_my_jam(self.Ewan))
